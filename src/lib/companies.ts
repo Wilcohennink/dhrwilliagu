@@ -68,6 +68,16 @@ export const COMPANIES: Record<string, CompanyConfig> = {
     domain: 'deofficestunter.nl',
     description: 'Budget kantoormeubelen online',
   },
+  cap: {
+    slug: 'cap',
+    name: 'Wiliagu Capital',
+    fullName: 'Wiliagu Capital',
+    prefix: 'CAP',
+    color: '#6366F1',
+    colorClass: 'text-indigo',
+    bgClass: 'bg-indigo',
+    description: 'Trading firm — consistent rendement met risicomanagement',
+  },
   mon: {
     slug: 'mon',
     name: 'Money Machine',

@@ -56,6 +56,13 @@ const navItems: NavItem[] = [
     ],
   },
   {
+    href: '/cap', label: 'Wiliagu Capital', icon: Crown, color: '#6366F1',
+    children: [
+      { href: '/cap', label: 'Dashboard', icon: LayoutDashboard },
+      { href: '/cap/team', label: 'Team', icon: Users },
+    ],
+  },
+  {
     href: '/mon', label: 'Money Machine', icon: Rocket, color: '#EAB308',
     children: [
       { href: '/mon', label: 'Dashboard', icon: LayoutDashboard },
