@@ -157,7 +157,7 @@ export default function BoardMeetingPage() {
 
   useEffect(() => {
     loadData()
-    const interval = setInterval(loadData, 15000)
+    const interval = setInterval(loadData, 5000)
     return () => clearInterval(interval)
   }, [loadData])
 
@@ -174,9 +174,17 @@ export default function BoardMeetingPage() {
       if (!meetingIssue) { toast.error('Geen actieve vergadering gevonden'); return }
 
       await paperclip.addComment(boardCompanyId, meetingIssue.id, newMessage.trim())
+      const sentMessage = newMessage.trim()
       setNewMessage('')
-      toast.success('Bericht verzonden')
+      toast.success('Bericht verzonden — agents worden getriggerd')
       loadData()
+
+      // Trigger board agents + CEO's to respond
+      fetch('/api/meeting/trigger', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message: sentMessage }),
+      }).catch(() => { /* silent */ })
     } catch {
       toast.error('Kon bericht niet verzenden')
     } finally {
