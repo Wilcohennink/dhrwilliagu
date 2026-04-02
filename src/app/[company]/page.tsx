@@ -291,9 +291,10 @@ export default function CompanyDashboard() {
                   {columnIssues.map(issue => {
                     const assignee = issue.assigneeAgentId ? agentMap[issue.assigneeAgentId] : null
                     return (
-                      <div
+                      <a
                         key={issue.id}
-                        className="bg-card-bg border border-card-border rounded-lg p-3 hover:border-card-hover transition-colors cursor-default"
+                        href={`/${slug}/issue/${issue.id}`}
+                        className="block bg-card-bg border border-card-border rounded-lg p-3 hover:border-white/20 transition-colors"
                       >
                         <div className="flex items-start justify-between mb-1.5">
                           <span className="text-[10px] font-mono text-muted">{issue.identifier}</span>
@@ -310,7 +311,7 @@ export default function CompanyDashboard() {
                             <span>{assignee.name}</span>
                           </div>
                         )}
-                      </div>
+                      </a>
                     )
                   })}
                 </div>
