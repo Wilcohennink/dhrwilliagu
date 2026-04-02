@@ -40,6 +40,18 @@ export async function GET(req: NextRequest) {
       const agentsRes = await fetch(`${PAPERCLIP_URL}/api/companies/${company.id}/agents`)
       const agents: Agent[] = await agentsRes.json()
 
+      // Auto-recovery: reset error agents zodat ze weer kunnen werken
+      const errorAgents = agents.filter(a => a.status === 'error')
+      for (const agent of errorAgents) {
+        try {
+          await fetch(`${PAPERCLIP_URL}/api/agents/${agent.id}`, {
+            method: 'PATCH',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ status: 'idle' }),
+          })
+        } catch { /* ignore */ }
+      }
+
       // Filter op CEO's en Brainstormers (researchers)
       const toTrigger = agents.filter(a => TRIGGER_ROLES.includes(a.role))
 
