@@ -88,7 +88,7 @@ export default function BoardPage() {
   const loadData = useCallback(async () => {
     try {
       const companies = await paperclip.getCompanies()
-      const matched = companies.find(c => c.issuePrefix === 'BOD')
+      const matched = companies.find(c => c.issuePrefix === 'WIL' || c.issuePrefix === 'BOD')
 
       if (!matched) {
         setNotConfigured(true)
@@ -158,7 +158,7 @@ export default function BoardPage() {
         </div>
         <div className="bg-card-bg border border-card-border rounded-xl p-8 text-center">
           <p className="text-muted">Niet geconfigureerd in Paperclip</p>
-          <p className="text-xs text-muted mt-2">Maak een company aan met prefix BOD om te beginnen.</p>
+          <p className="text-xs text-muted mt-2">Maak een company aan met prefix WIL of BOD om te beginnen.</p>
         </div>
       </div>
     )
