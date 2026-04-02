@@ -79,12 +79,18 @@ export default function BoardMeetingPage() {
 
       if (!meetingIssue) {
         // Maak een permanente board meeting issue aan
-        meetingIssue = await paperclip.createIssue(boardCo.id, {
-          title: 'Board Meeting — Doorlopende Vergadering',
-          description: 'Centrale vergaderruimte voor het Board of Directors. Hier bespreken Wilco, de Board agents en alle CEO\'s strategische beslissingen, resultaten en nieuwe ideeen.',
-          status: 'in_progress',
-          priority: 'critical',
-        })
+        try {
+          meetingIssue = await paperclip.createIssue(boardCo.id, {
+            title: 'Board Meeting Doorlopende Vergadering',
+            description: 'Centrale vergaderruimte voor het Board of Directors.',
+            status: 'backlog',
+            priority: 'critical',
+          })
+        } catch {
+          // Als creatie faalt, probeer opnieuw te zoeken (misschien race condition)
+          const retryIssues = await paperclip.getIssues(boardCo.id)
+          meetingIssue = retryIssues.find((i: Issue) => i.title.includes('Board Meeting') && i.status !== 'cancelled' && i.status !== 'done')
+        }
       }
 
       // Haal comments op als chat berichten
