@@ -82,10 +82,10 @@ export const paperclip = {
     api<Issue>(`/issues/${issueId}`, { method: 'PATCH', body: JSON.stringify(data) }),
 
   // Comments
-  getComments: (companyId: string, issueId: string) =>
-    api<Comment[]>(`/companies/${companyId}/issues/${issueId}/comments`),
-  addComment: (companyId: string, issueId: string, body: string) =>
-    api<Comment>(`/companies/${companyId}/issues/${issueId}/comments`, {
+  getComments: (_companyId: string, issueId: string) =>
+    api<Comment[]>(`/issues/${issueId}/comments`),
+  addComment: (_companyId: string, issueId: string, body: string) =>
+    api<Comment>(`/issues/${issueId}/comments`, {
       method: 'POST',
       body: JSON.stringify({ body }),
     }),
