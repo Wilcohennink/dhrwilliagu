@@ -74,7 +74,7 @@ export default function BrainstormPage() {
         title: ideaText.trim(),
         description: '',
         status: 'backlog',
-        priority: 'none',
+        priority: 'medium',
       })
       setIdeaText('')
       toast.success('Idee toegevoegd')
