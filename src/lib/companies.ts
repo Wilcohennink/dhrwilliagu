@@ -68,6 +68,16 @@ export const COMPANIES: Record<string, CompanyConfig> = {
     domain: 'deofficestunter.nl',
     description: 'Budget kantoormeubelen online',
   },
+  mon: {
+    slug: 'mon',
+    name: 'Money Machine',
+    fullName: 'Money Machine',
+    prefix: 'MON',
+    color: '#EAB308',
+    colorClass: 'text-yellow',
+    bgClass: 'bg-yellow',
+    description: 'Doel: €1M in 10 dagen — alle middelen toegestaan',
+  },
 }
 
 export const COMPANY_SLUGS = Object.keys(COMPANIES)

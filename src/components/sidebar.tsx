@@ -55,6 +55,14 @@ const navItems: NavItem[] = [
       { href: '/dos/team', label: 'Team', icon: Users },
     ],
   },
+  {
+    href: '/mon', label: 'Money Machine', icon: Rocket, color: '#EAB308',
+    children: [
+      { href: '/mon', label: 'Dashboard', icon: LayoutDashboard },
+      { href: '/mon/brainstorm', label: 'Brainstorm', icon: Brain },
+      { href: '/mon/team', label: 'Team', icon: Users },
+    ],
+  },
   { href: '/tasks', label: 'Mijn Taken', icon: ListTodo, color: '#EF4444' },
 ]
 
