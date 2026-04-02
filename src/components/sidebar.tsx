@@ -18,7 +18,13 @@ interface NavItem {
 
 const navItems: NavItem[] = [
   { href: '/', label: 'Command Center', icon: LayoutDashboard },
-  { href: '/board', label: 'Board of Directors', icon: Crown, color: '#C0C0C0' },
+  {
+    href: '/board', label: 'Board of Directors', icon: Crown, color: '#C0C0C0',
+    children: [
+      { href: '/board', label: 'Overzicht', icon: LayoutDashboard },
+      { href: '/board/meeting', label: 'Board Meeting', icon: Users },
+    ],
+  },
   {
     href: '/the', label: 'Wall of Glory', icon: Trophy, color: '#D4AF37',
     children: [
