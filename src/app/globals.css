@@ -1,23 +1,23 @@
 @import "tailwindcss";
 
 :root {
-  --background: #09090B;
-  --foreground: #FAFAFA;
-  --sidebar-bg: #0C0C0F;
-  --card-bg: #111113;
-  --card-border: #1C1C21;
-  --card-hover: #18181D;
-  --muted: #71717A;
-  --muted-foreground: #A1A1AA;
-  --accent-gold: #D4AF37;
-  --accent-green: #22C55E;
-  --accent-navy: #1A2332;
-  --accent-orange: #F97316;
-  --accent-silver: #C0C0C0;
-  --accent-blue: #3B82F6;
+  --background: #0D1117;
+  --foreground: #E6EDF3;
+  --sidebar-bg: #0D1117;
+  --card-bg: #161B22;
+  --card-border: #21262D;
+  --card-hover: #1C2333;
+  --muted: #7D8590;
+  --muted-foreground: #9CA3AF;
+  --navy: #1A2332;
+  --navy-light: #243044;
+  --green: #22C55E;
+  --green-dim: #16A34A;
+  --green-glow: rgba(34, 197, 94, 0.15);
   --success: #22C55E;
   --warning: #EAB308;
   --danger: #EF4444;
+  --info: #3B82F6;
 }
 
 @theme inline {
@@ -29,15 +29,15 @@
   --color-card-hover: var(--card-hover);
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
-  --color-gold: var(--accent-gold);
-  --color-green: var(--accent-green);
-  --color-navy: var(--accent-navy);
-  --color-orange: var(--accent-orange);
-  --color-silver: var(--accent-silver);
-  --color-blue: var(--accent-blue);
+  --color-navy: var(--navy);
+  --color-navy-light: var(--navy-light);
+  --color-green: var(--green);
+  --color-green-dim: var(--green-dim);
+  --color-green-glow: var(--green-glow);
   --color-success: var(--success);
   --color-warning: var(--warning);
   --color-danger: var(--danger);
+  --color-info: var(--info);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
@@ -48,7 +48,58 @@ body {
   font-family: var(--font-geist-sans), system-ui, sans-serif;
 }
 
-::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: var(--background); }
-::-webkit-scrollbar-thumb { background: #27272A; border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover { background: #3F3F46; }
+/* Smooth scrollbar */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #21262D; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #30363D; }
+
+/* Agent avatar animations */
+@keyframes pulse-green {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.4); }
+  50% { box-shadow: 0 0 0 6px rgba(34, 197, 94, 0); }
+}
+
+@keyframes pulse-red {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4); }
+  50% { box-shadow: 0 0 0 6px rgba(239, 68, 68, 0); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slide-in-right {
+  from { opacity: 0; transform: translateX(16px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.animate-pulse-green { animation: pulse-green 2s ease-in-out infinite; }
+.animate-pulse-red { animation: pulse-red 2s ease-in-out infinite; }
+.animate-float { animation: float 3s ease-in-out infinite; }
+.animate-fade-in { animation: fade-in 0.3s ease-out; }
+.animate-slide-in { animation: slide-in-right 0.3s ease-out; }
+
+/* Card hover effect */
+.card-glow:hover {
+  border-color: rgba(34, 197, 94, 0.3);
+  box-shadow: 0 0 20px rgba(34, 197, 94, 0.05);
+}
+
+/* Status dot animations */
+.status-running {
+  background: #22C55E;
+  animation: pulse-green 2s ease-in-out infinite;
+}
+.status-error {
+  background: #EF4444;
+  animation: pulse-red 2s ease-in-out infinite;
+}
+.status-idle { background: #7D8590; }
+.status-paused { background: #EAB308; }
