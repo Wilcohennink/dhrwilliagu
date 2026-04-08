@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 
-const PAPERCLIP_URL = process.env.PAPERCLIP_URL || 'http://204.168.221.20:3101'
+const PAPERCLIP_URL = process.env.PAPERCLIP_URL || 'http://204.168.221.20:3100'
 
 async function proxyRequest(req: NextRequest, method: string, params: Promise<{ path: string[] }>) {
   const { path } = await params
